@@ -12,13 +12,12 @@ def savesystem(data,saveorload):
     elif saveorload == "load":
         folderPath = os.path.join(os.path.expanduser("~"), "Documents", "MGO1 Calculator")
         filename = "userdata.json"
-        if saveorload == "load":
-            if not os.path.exists(folderPath):
-                os.makedirs(folderPath)
+        if not os.path.exists(folderPath):
+            os.makedirs(folderPath)
 
-            with open(os.path.join(folderPath, filename), "r") as file:
-                userstats = json.load(file)
-        return userstats
+        with open(os.path.join(folderPath, filename), "r") as file:
+             userstats = json.load(file)
+    return userstats
 
 
 stats = {"Kills": None, "Deaths": None, "Stuns": None, "Stuns Received": None, "Headshots": None,
@@ -69,7 +68,7 @@ os.system("clear")
 
 username = input("What is your Username > ")
 while True:
-    print("Press 1 to add to add stats, press 2 to view stats, press 3 to edit individual stats, press 4 to save/load stats")
+    print("Press 1 to add to add stats, press 2 to view stats, press 3 to edit individual stats, press 4 to save/load stats and press 5 to exit")
     userchoice = input("> ")
     if userchoice == "1":
         for i, t in stats.items():
@@ -95,7 +94,7 @@ while True:
             print("Save Successful")
             continue
         elif saveorload == "L":
-            savesystem(stats, "load")
+            stats = savesystem(stats, "load")
             print("Load Successful")
             continue
     elif userchoice == "5":
