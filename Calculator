@@ -1,0 +1,106 @@
+import os,json,time
+
+def savesystem(data,saveorload):
+    folderPath = os.path.join(os.path.expanduser("~"), "Documents", "MGO1 Calculator")
+    filename = "userdata.json"
+    if saveorload == "save":
+        if not os.path.exists(folderPath):
+            os.makedirs(folderPath)
+
+        with open(os.path.join(folderPath, filename), "w") as file:
+            json.dump(data,file)
+    elif saveorload == "load":
+        folderPath = os.path.join(os.path.expanduser("~"), "Documents", "MGO1 Calculator")
+        filename = "userdata.json"
+        if saveorload == "load":
+            if not os.path.exists(folderPath):
+                os.makedirs(folderPath)
+
+            with open(os.path.join(folderPath, filename), "r") as file:
+                userstats = json.load(file)
+        return userstats
+
+
+stats = {"Kills": None, "Deaths": None, "Stuns": None, "Stuns Received": None, "Headshots": None,
+         "Headshots received": None, "Sneaking Plays": None, "Rescue Plays": None, "TDM Plays": None,
+         "Capture Plays": None, "Deathmatch Plays": None, "Survived Sneaking": None, "Survived Rescue": None,
+         "Sneaking Wins": None, "Rescue Wins": None, "TDM Wins": None, "Capture Wins": None, "Team kills": None,
+         "Team Stuns": None, "Rolls": None,}
+
+
+def statpage():
+  kdRatio = (stats["Kills"] + stats["Stuns"]) - (stats["Deaths"] + stats["Stuns Received"])
+  totalRoundDisp = stats["Sneaking Plays"] + stats["Rescue Plays"] + stats["TDM Plays"] + stats["Capture Plays"] + stats["Deathmatch Plays"]
+  totalRoundCalc = stats["Rescue Plays"] + stats["TDM Plays"] + stats["Capture Plays"]
+  survivalRatioSne = stats["Survived Sneaking"] / stats["Sneaking Plays"]
+  survivalRatioRes = stats["Survived Rescue"] / stats["Rescue Plays"]
+  totalWinsPrt1 = stats["Rescue Wins"] + stats["TDM Wins"] + stats["Capture Wins"] - stats["Sneaking Wins"]
+  totalWinsPrt2 = totalWinsPrt1 / totalRoundCalc
+  headshotPercent = stats["Headshots"] / stats["Kills"]
+
+  userstats =  f"""{username}  
+  K/D ratio: {float(kdRatio):.2f}
+  Total rounds played: {totalRoundDisp}
+  Win percentage: {float(totalWinsPrt2 * 100):.2f}%
+  Survival Ratio for Sneaking: {float(survivalRatioSne):.2f}
+  Survival Ratio for Rescue: {float(survivalRatioRes):.2f}
+  Headshot percentage: {float(headshotPercent * 100):.2f}%
+  Team Kills:{stats['teamKills']}   Team Stuns:{stats['teamStuns']}
+  Rolls/Evasions:{stats['Rolls']}"""
+  return userstats
+
+print("""
+.___  ___.   _______   ______    __                                                                        
+|   \/   |  /  _____| /  __  \  /_ |                                                                       
+|  \  /  | |  |  __  |  |  |  |  | |                                                                       
+|  |\/|  | |  | |_ | |  |  |  |  | |                                                                       
+|  |  |  | |  |__| | |  `--'  |  | |                                                                       
+|__|  |__|  \______|  \______/   |_|                                                                       
+
+  ______     ___       __        ______  __    __   __          ___   .___________.  ______   .______      
+ /      |   /   \     |  |      /      ||  |  |  | |  |        /   \  |           | /  __  \  |   _  \     
+|  ,----'  /  ^  \    |  |     |  ,----'|  |  |  | |  |       /  ^  \ `---|  |----`|  |  |  | |  |_)  |    
+|  |      /  /_\  \   |  |     |  |     |  |  |  | |  |      /  /_\  \    |  |     |  |  |  | |      /     
+|  `----./  _____  \  |  `----.|  `----.|  `--'  | |  `----./  _____  \   |  |     |  `--'  | |  |\  \----.
+ \______/__/     \__\ |_______| \______| \______/  |_______/__/     \__\  |__|      \______/  | _| `._____|
+                                                                                                           """)
+time.sleep(1)
+os.system("clear")
+
+username = input("What is your Username > ")
+while True:
+    print("Press 1 to add to add stats, press 2 to view stats, press 3 to edit individual stats, press 4 to save/load stats")
+    userchoice = input("> ")
+    if userchoice == "1":
+        for i in stats.items():
+            stats[i] = int(input(f"{i}:"))
+        print("All Done! Don't forget to save!")
+    elif userchoice == "2":
+      statDisp = statpage()  
+      print(statDisp)
+      input("Type anything to move on")
+      continue
+    elif userchoice == "3":
+      for i, t in stats.items():
+        print(f"{i}:{t}")
+      print("Note: Make sure you get the Capital Letters and spaces or program will recognise it, I can't convice python to read between the line :(")
+      editChoice = input("which of these stats would you like to edit > ")
+      updatedStat = input("What is the updated stat > ")
+      stats[editChoice] = updatedStat
+      print(f"Alrighty, the new stat is now {stats[editChoice]}")
+    elif userchoice == "4":
+        saveorload = input("Would you like to Save or Load (S/L)").strip().upper()
+        if saveorload == "S":
+            savesystem(stats,"save")
+            print("Save Successful")
+            continue
+        elif saveorload == "L":
+            savesystem(stats, "load")
+            print("Load Successful")
+            continue
+    elif userchoice == "5":
+      userchoice2 = input("Are you sure? Y/N > ").strip().upper()
+      if userchoice2 == "Y":
+        break
+      elif userchoice2 == "N":
+        continue
