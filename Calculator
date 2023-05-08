@@ -20,15 +20,11 @@ def savesystem(data,saveorload):
     return userstats
 
 
-stats = {"Kills": None, "Deaths": None, "Stuns": None, "Stuns Received": None, "Headshots": None,
-         "Headshots received": None, "Sneaking Plays": None, "Rescue Plays": None, "TDM Plays": None,
-         "Capture Plays": None, "Deathmatch Plays": None, "Survived Sneaking": None, "Survived Rescue": None,
-         "Sneaking Wins": None, "Rescue Wins": None, "TDM Wins": None, "Capture Wins": None, "Team Kills": None,
-         "Team Stuns": None, "Rolls": None,}
+stats = {"Kills": 0, "Deaths": 0, "Stuns": 0, "Stuns Received": 0, "Headshots": 0, "Headshots received": 0, "Sneaking Plays": 0, "Sneaking Wins": 0, "Survived Sneaking": 0, "Rescue Plays": 0, "Rescue Wins": 0, "Survived Rescue": 0, "TDM Plays": 0, "TDM Wins": 0, "Capture Plays": 0, "Capture Wins": 0, "Deathmatch Plays": 0, "Team Kills": 0, "Team Stuns": 0, "Rolls": 0,}
 
 
 def statpage():
-  kdRatio = (stats["Kills"] + stats["Stuns"]) - (stats["Deaths"] + stats["Stuns Received"])
+  kdRatio = (stats["Kills"] + stats["Stuns"]) / (stats["Deaths"] + stats["Stuns Received"])
   totalRoundDisp = stats["Sneaking Plays"] + stats["Rescue Plays"] + stats["TDM Plays"] + stats["Capture Plays"] + stats["Deathmatch Plays"]
   totalRoundCalc = stats["Rescue Plays"] + stats["TDM Plays"] + stats["Capture Plays"]
   survivalRatioSne = stats["Survived Sneaking"] / stats["Sneaking Plays"]
