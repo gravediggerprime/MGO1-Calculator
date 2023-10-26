@@ -49,9 +49,9 @@
   ('base_library.zip',
    'C:\\Users\\User\\PycharmProjects\\MGO1_Calculator\\build\\main\\base_library.zip',
    'DATA'),
-  ('certifi\\py.typed',
-   'C:\\Users\\User\\PycharmProjects\\MGO1_Calculator\\venv\\Lib\\site-packages\\certifi\\py.typed',
-   'DATA'),
   ('certifi\\cacert.pem',
    'C:\\Users\\User\\PycharmProjects\\MGO1_Calculator\\venv\\Lib\\site-packages\\certifi\\cacert.pem',
+   'DATA'),
+  ('certifi\\py.typed',
+   'C:\\Users\\User\\PycharmProjects\\MGO1_Calculator\\venv\\Lib\\site-packages\\certifi\\py.typed',
    'DATA')],)

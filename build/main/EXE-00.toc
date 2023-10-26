@@ -61,7 +61,7 @@
  [],
  False,
  False,
- 1698284643,
+ 1698304340,
  [('run.exe',
    'C:\\Users\\User\\PycharmProjects\\MGO1_Calculator\\venv\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
    'EXECUTABLE')],

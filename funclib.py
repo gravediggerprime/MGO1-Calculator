@@ -60,6 +60,21 @@ def hs_percent():
     return headshot
 
 
+def survival_ratio(sne_or_res):
+
+    if sne_or_res == "Sneaking":
+
+        ratio = dictionlib.true_all_time["Survived Sneaking"] / dictionlib.true_all_time["Sneaking Plays"]
+
+        return round(ratio, 2)
+
+    elif sne_or_res == "Rescue":
+
+        ratio = dictionlib.true_all_time["Survived Rescue"] / dictionlib.true_all_time["Rescue Plays"]
+
+        return round(ratio, 2)
+
+
 def stat_disp(display_name):
 
     stats = f"""
@@ -93,11 +108,15 @@ Sneaking Wins: {dictionlib.true_all_time["Sneaking Wins"]}
 
 Sneaking Rounds Without Dying: {dictionlib.true_all_time["Survived Sneaking"]}
 
+Sneaking Survival Ratio = {survival_ratio("Sneaking")}
+
 Rescue Rounds: {dictionlib.true_all_time["Rescue Plays"]}
 
 Rescue Wins: {dictionlib.true_all_time["Rescue Wins"]}
 
 Rescue Rounds Without Dying: {dictionlib.true_all_time["Survived Rescue"]}
+
+Rescue Survival Ratio = {survival_ratio("Rescue")}
 
 Team Deathmatch Rounds: {dictionlib.true_all_time["TDM Plays"]}
 
